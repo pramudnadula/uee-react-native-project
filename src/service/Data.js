@@ -8,7 +8,7 @@ export const HomeDetails = [
     {
         title: "Event",
         image: require("../../assets/event.png"),
-        screen: "MyMarianResources",
+        screen: "AddEvent",
         color: "#43C4ED",
     },
     {

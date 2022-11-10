@@ -9,6 +9,7 @@ import MarianResourcesHome from "./src/features/marianResources/MarianResourcesH
 import MarianResourcesEdit from "./src/features/marianResources/MarianResourcesEdit";
 import MarianResourcesViewCreator from "./src/features/marianResources/MarianResourcesViewCreator";
 import MarianResourcesViewUser from "./src/features/marianResources/MarianResourcesViewUser";
+import AddEvent from "./src/features/event/AddEvent";
 
 
 const Stack = createNativeStackNavigator();
@@ -33,6 +34,7 @@ export default function App() {
         <Stack.Screen name="MarianResourcesEdit" component={MarianResourcesEdit} />
         <Stack.Screen name="MarianResourcesViewCreator" component={MarianResourcesViewCreator} />
         <Stack.Screen name="MarianResourcesViewUser" component={MarianResourcesViewUser} />
+        <Stack.Screen name="AddEvent" component={AddEvent} />
       </Stack.Navigator>
     </NavigationContainer >
 
