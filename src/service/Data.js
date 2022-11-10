@@ -14,7 +14,7 @@ export const HomeDetails = [
     {
         title: "Community",
         image: require("../../assets/community.png"),
-        screen: "MyMarianResources",
+        screen: "allpost",
         color: "#43A9ED",
 
     },
@@ -52,7 +52,7 @@ export const SideBarDetails = [
     {
         title: "My Posts",
         image: require("../../assets/posticon.png"),
-        screen: "MyMarianResources",
+        screen: "mypost",
     },
     {
         title: "My Report",

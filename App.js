@@ -10,6 +10,10 @@ import MarianResourcesEdit from "./src/features/marianResources/MarianResourcesE
 import MarianResourcesViewCreator from "./src/features/marianResources/MarianResourcesViewCreator";
 import MarianResourcesViewUser from "./src/features/marianResources/MarianResourcesViewUser";
 import AddEvent from "./src/features/event/AddEvent";
+import AllPost from "./src/features/community/pages/AllPost";
+import AddPost from "./src/features/community/pages/AddPost";
+import MyPost from "./src/features/community/pages/MyPost";
+
 
 
 const Stack = createNativeStackNavigator();
@@ -35,6 +39,10 @@ export default function App() {
         <Stack.Screen name="MarianResourcesViewCreator" component={MarianResourcesViewCreator} />
         <Stack.Screen name="MarianResourcesViewUser" component={MarianResourcesViewUser} />
         <Stack.Screen name="AddEvent" component={AddEvent} />
+        <Stack.Screen name="allpost" component={AllPost} />
+        <Stack.Screen name="addpost" component={AddPost} />
+        <Stack.Screen name="mypost" component={MyPost} />
+
       </Stack.Navigator>
     </NavigationContainer >
 
