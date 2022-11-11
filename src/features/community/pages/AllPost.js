@@ -1,22 +1,173 @@
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, Modal, StyleSheet, Pressable, Alert } from "react-native";
 import PostCard from "../components/PostCard";
-import { AddButton, Container } from "../styles/all";
+import { AddButton, AllText, CloseModal, CommentList, Container, HeaderRow, PopContent, PopModal, SendButton2 } from "../styles/all";
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Button } from "react-native-paper";
+import { CommentSend, Input, Input2, InputView, InputView2, SendButton } from "../styles/add";
+import Comment from "../components/Comment";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 function AllPost({ navigation }) {
-    const data = [
-        { id: 1, name: "kavi" }, { id: 2, name: "davi" }, { id: 3, name: "ravi" }
-    ]
+    const [posts, setposts] = useState([])
+    const [comms, setcomms] = useState()
+    const [uid, setuid] = useState()
+    const [comm, setcomm] = useState('')
+    const [modalVisible, setModalVisible] = useState(false);
+    useEffect(() => {
+        getData()
+        getUid()
+    }, [])
+
+    const getData = () => {
+        axios.get('http://192.168.1.23:8070/api/post/all').then(data => {
+            setposts(data.data)
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+
+    const getUid = async () => {
+        try {
+            const value = await AsyncStorage.getItem('uid')
+            if (value !== null) {
+                setuid(value)
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    const setCommdata = (data) => {
+        setModalVisible(true)
+        setcomms(data)
+    }
+
+    const addComment = (pid) => {
+        if (comm === '') {
+            alert("Please Enter a Comment")
+            return
+        }
+        console.log(uid)
+        axios.post('http://192.168.1.23:8070/api/post/addcomment', { pid, uid, content: comm }).then(data => {
+            // setexist(!exist)
+            setcomms(data.data)
+            setcomm("")
+            getData()
+
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+
     return (
         <Container>
-            <AddButton onPress={() => navigation.navigate("addpost")}><Ionicons name="add-circle" color="blue" size={57} /></AddButton>
+            <HeaderRow>
+                <AllText>Community</AllText>
+                <AddButton onPress={() => navigation.navigate("addpost")}><Ionicons name="add-circle" color="#2e64e5" size={57} /></AddButton>
+            </HeaderRow>
+
             <FlatList
-                data={data}
-                renderItem={({ item }) => <PostCard item={item} />}
+                data={posts}
+                renderItem={({ item }) => <PostCard item={item} type={item.type} visible={setCommdata} meth={getData} />}
                 keyExtractor={item => item.id}
                 showsVerticalScrollIndicator={false}
             />
-        </Container>
+            <PopModal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+
+                    setModalVisible(!modalVisible);
+                }}>
+                {/* <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <Text style={styles.modalText}>Hello World!</Text>
+                        <Pressable
+                            style={[styles.button, styles.buttonClose]}
+                            onPress={() => setModalVisible(!modalVisible)}>
+                            <Text style={styles.textStyle}>Hide Modal</Text>
+                        </Pressable>
+                    </View>
+                </View> */}
+                <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <PopContent>
+                            <InputView2>
+                                <CloseModal>
+                                    <Pressable
+                                        style={[styles.button, styles.buttonClose]}
+                                        onPress={() => setModalVisible(!modalVisible)}>
+                                        <Ionicons name="close" size={20} color={"white"} />
+                                    </Pressable>
+                                </CloseModal>
+                                <CommentSend>
+                                    <Input2 placeholder={"Enter the comment"} onChangeText={newtext => setcomm(newtext)} />
+                                    <SendButton>
+                                        <SendButton2 onPress={() => addComment(comms._id)}>
+                                            <Ionicons name="send-outline" size={26} color={"green"} />
+                                        </SendButton2>
+                                    </SendButton>
+                                </CommentSend>
+                                <CommentList>
+                                    {comms?.comments?.map((m, i) => (
+                                        <Comment data={m} />
+                                    ))}
+                                </CommentList>
+                            </InputView2>
+                        </PopContent>
+                    </View>
+                </View>
+            </PopModal>
+
+        </Container >
     );
 }
+const styles = StyleSheet.create({
+    centeredView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 22,
+        marginLeft: 20,
+        marginRight: 20
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 35,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    button: {
+        borderRadius: 20,
+        padding: 5,
+
+    },
+    buttonOpen: {
+        backgroundColor: '#F194FF',
+    },
+    buttonClose: {
+        backgroundColor: 'red',
+    },
+    textStyle: {
+        color: 'white',
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    modalText: {
+        marginBottom: 15,
+        textAlign: 'center',
+    },
+});
 
 export default AllPost;
