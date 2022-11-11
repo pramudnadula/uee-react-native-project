@@ -9,10 +9,12 @@ import MarianResourcesHome from "./src/features/marianResources/MarianResourcesH
 import MarianResourcesEdit from "./src/features/marianResources/MarianResourcesEdit";
 import MarianResourcesViewCreator from "./src/features/marianResources/MarianResourcesViewCreator";
 import MarianResourcesViewUser from "./src/features/marianResources/MarianResourcesViewUser";
-import AddEvent from "./src/features/event/AddEvent";
+import AddEvent from "./src/features/event/pages/AddEvent";
 import AllPost from "./src/features/community/pages/AllPost";
 import AddPost from "./src/features/community/pages/AddPost";
 import MyPost from "./src/features/community/pages/MyPost";
+import AllEvent from "./src/features/event/pages/AllEvent";
+import MyEvent from "./src/features/event/pages/MyEvent";
 import Reports from "./src/features/report/pages/Reports/Reports";
 import MyReports from "./src/features/report/pages/MyReports/MyReports";
 
@@ -41,12 +43,15 @@ export default function App() {
         <Stack.Screen name="MarianResourcesEdit" component={MarianResourcesEdit} />
         <Stack.Screen name="MarianResourcesViewCreator" component={MarianResourcesViewCreator} />
         <Stack.Screen name="MarianResourcesViewUser" component={MarianResourcesViewUser} />
-        <Stack.Screen name="AddEvent" component={AddEvent} />
+        <Stack.Screen name="addevent" component={AddEvent} />
         <Stack.Screen name="allpost" component={AllPost} />
         <Stack.Screen name="addpost" component={AddPost} />
         <Stack.Screen name="mypost" component={MyPost} />
+        <Stack.Screen name="allevent" component={AllEvent} />
+        <Stack.Screen name="myevent" component={MyEvent} />
         <Stack.Screen name="Reports" component={Reports} />
         <Stack.Screen name="MyReports" component={MyReports} />
+
 
       </Stack.Navigator>
     </NavigationContainer >
