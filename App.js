@@ -15,6 +15,9 @@ import AddPost from "./src/features/community/pages/AddPost";
 import MyPost from "./src/features/community/pages/MyPost";
 import AllEvent from "./src/features/event/pages/AllEvent";
 import MyEvent from "./src/features/event/pages/MyEvent";
+import Reports from "./src/features/report/pages/Reports/Reports";
+import MyReports from "./src/features/report/pages/MyReports/MyReports";
+
 
 
 
@@ -46,6 +49,9 @@ export default function App() {
         <Stack.Screen name="mypost" component={MyPost} />
         <Stack.Screen name="allevent" component={AllEvent} />
         <Stack.Screen name="myevent" component={MyEvent} />
+        <Stack.Screen name="Reports" component={Reports} />
+        <Stack.Screen name="MyReports" component={MyReports} />
+
 
       </Stack.Navigator>
     </NavigationContainer >

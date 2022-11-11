@@ -32,13 +32,36 @@ display: flex;
 flex-direction: column;
 `
 
+export const AddImage = styled.Image`
+width: 100px;
+height: 70px;
+margin-right: 20px;
+`
 
+export const VisibleImageBox = styled.View`
+display: flex;
+flex-direction: row;
+align-items: center;
+`
 
+export const EditButton = styled.View`
+
+`
+export const CommentSend = styled.View`
+display: flex;
+flex-direction: row;
+`
 
 export const InputView = styled.View`
 height: 60px;
 width: 300px;
 margin-top: 20px;
+`
+
+export const InputView2 = styled.View`
+height: 60px;
+width: 300px;
+margin-top: 3px;
 `
 
 export const InputTextArea = styled.View`
@@ -54,6 +77,29 @@ border-color: gray;
 padding: 5px;
 border-radius: 5px;
 margin-top: 3px;
+`
+
+export const Input2 = styled.TextInput`
+width:85%;
+border: 1px;
+border-color: gray;
+padding: 5px;
+border-radius: 5px;
+margin-top: 3px;
+margin-bottom: 10px;
+`
+
+export const MainRow = styled.View`
+display: flex;
+flex-direction: row;
+align-items: center;
+`
+
+export const SendButton = styled.View`
+width: 15%;
+border-radius: 20px;
+margin-left: -2px;
+margin-bottom: 10px;
 `
 export const OneSwitch = styled.View`
 display: flex;
