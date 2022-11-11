@@ -8,7 +8,7 @@ export const HomeDetails = [
     {
         title: "Event",
         image: require("../../assets/event.png"),
-        screen: "AddEvent",
+        screen: "allevent",
         color: "#43C4ED",
     },
     {
@@ -47,7 +47,7 @@ export const SideBarDetails = [
     {
         title: "My Event",
         image: require("../../assets/eventicon.png"),
-        screen: "MyMarianResources",
+        screen: "myevent",
     },
     {
         title: "My Posts",
