@@ -9,7 +9,7 @@ import { firebase } from '../../../helpers/Firebase';
 import logo from '.././../../../assets/im.jpg'
 import { ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-function AddPost(props) {
+function EditPost({ navigation, route }) {
     const [selectedLanguage, setSelectedLanguage] = useState('');
     const [image, setImage] = useState(null);
     const [title, settitle] = useState('');
@@ -307,4 +307,4 @@ function AddPost(props) {
     );
 }
 
-export default AddPost;
+export default EditPost;

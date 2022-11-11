@@ -7,9 +7,25 @@ margin-top: 40px;
 align-items:center;
 `
 
+export const HeaderRow = styled.View`
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+`
+
+export const PostTitle = styled.Text`
+font-size: 21px;
+margin-left: 40px;
+`
+
+export const AllText = styled.Text`
+font-size: 35px;
+`
+
 export const AddButton = styled.TouchableOpacity`
 align-self: flex-end;
-margin-right: 10px;
+margin-left: 30px;
 `
 
 export const Card = styled.View`
@@ -19,17 +35,72 @@ margin-bottom: 10px;
 border-bottom: 10px;
 `
 
+
+export const Card2 = styled.View`
+background-color: #f8f8f8;
+width: 90%;
+margin-bottom: 8px;
+border-radius: 30px;
+`
+
+export const CloseModal = styled.View`
+width: 30px;
+align-self: flex-end;
+margin-bottom: 10px;
+`
+
+export const SendButton2 = styled.Pressable`
+margin-top: 8px;
+margin-left: 8px;
+`
+
 export const UserInfo = styled.View`
 flex-direction: row;
 padding: 15px;
 justify-content: flex-start;
 `
 
+export const ImageBox = styled.View`
+display: flex;
+flex-direction: row;
+`
+
+export const ImageBoxContent1 = styled.View`
+flex: 1;
+height: 240px;
+`
+
+export const Image1 = styled.Image`
+height: 100%;
+height: 100%;
+margin: 4px;
+`
+
+export const Image2 = styled.Image`
+height: 50%;
+height: 50%;
+margin: 2px;
+`
+export const ImageBoxContent2 = styled.View`
+flex:1;
+display: flex;
+height: 240px;
+flex-direction: column;
+`
+
+
 export const UserImage = styled.Image`
 width: 50px;
 height: 50px;
 border-radius: 25px;
 `
+
+export const UserImage2 = styled.Image`
+width: 30px;
+height: 30px;
+border-radius: 25px;
+`
+
 export const UserInfoText = styled.View`
 flex-direction: column;
 justify-content: center;
@@ -76,6 +147,11 @@ padding: 5px;
 background-color: ${props => props.active ? '#2e64e515' : 'transparent'};
 `
 
+export const CommentList = styled.View`
+display: flex;
+flex-direction: column;
+`
+
 export const Interactiontext = styled.Text`
 font-size: 12px;
 font-weight: bold;
@@ -83,4 +159,18 @@ color: #333;
 margin-top: 5px;
 color: ${props => props.active ? '#2e64e5' : '#333'};
 margin-left: 5px;
+`
+
+export const PopModal = styled.Modal`
+width: 100%;
+`
+
+export const PopContent = styled.View`
+width: 90%;
+display: flex;
+height: 90%;
+padding: 10px;
+margin: 8px;
+border-radius: 10px;
+flex-direction: column;
 `
