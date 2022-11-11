@@ -8,7 +8,7 @@ export const HomeDetails = [
     {
         title: "Event",
         image: require("../../assets/event.png"),
-        screen: "MyMarianResources",
+        screen: "AddEvent",
         color: "#43C4ED",
     },
     {
@@ -21,7 +21,7 @@ export const HomeDetails = [
     {
         title: "Report",
         image: require("../../assets/report.png"),
-        screen: "MyMarianResources",
+        screen: "Reports",
         color: "#5760AE",
 
     },
@@ -57,7 +57,7 @@ export const SideBarDetails = [
     {
         title: "My Report",
         image: require("../../assets/reporticon.png"),
-        screen: "MyMarianResources",
+        screen: "MyReports",
     },
 ]
 
@@ -85,6 +85,6 @@ export const BottomNavigationDetails = [
     {
         title: "Report",
         image: require("../../assets/reporticon.png"),
-        screen: "MyMarianResources",
+        screen: "Reports",
     },
 ]
