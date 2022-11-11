@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         position: "absolute",
         right: 140,
+        zIndex: 1
     },
     sideButton: {
         width: 50,
