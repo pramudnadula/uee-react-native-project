@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Card, Container, UserImage, UserInfo, UserName, UserInfoText, PostTime, PostText, PostImg, InteractionWrapper, Interaction, Interactiontext, ImageBox, ImageBoxContent, ImageBoxContent1, ImageBoxContent2, Image1, Image2, PostTitle } from "../styles/all";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { async } from '@firebase/util';
 import axios from 'axios';
 import { MainRow } from '../styles/add';
 function PostCard({ item, type, visible, meth }) {
