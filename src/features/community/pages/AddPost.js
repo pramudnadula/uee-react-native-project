@@ -5,7 +5,6 @@ import { ActivityIndicator, RadioButton } from 'react-native-paper';
 import { Picker } from '@react-native-picker/picker';
 import * as ImagePicker from 'expo-image-picker';
 import axios from 'axios';
-import { firebase } from '../../../helpers/Firebase';
 import logo from '.././../../../assets/im.jpg'
 import { ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';

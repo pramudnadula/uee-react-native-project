@@ -34,8 +34,8 @@ export default function App() {
             headerShown: false
           }
         }>
-        {/* <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Register" component={Register} /> */}
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="MarianResourcesHome" component={MarianResourcesHome} />
         <Stack.Screen name="MyMarianResources" component={MyMarianResources} />
