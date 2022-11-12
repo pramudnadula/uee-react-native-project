@@ -56,7 +56,7 @@ function Reports({ navigation }) {
           <PageTitle>Reports</PageTitle>
         </View>
         <IconView>
-          <Icon name="plus-circle" size={32} color="#42a1f5" />
+          <Icon name="plus-circle" size={32} color="#42a1f5" onPress={() => navigation.navigate("CreateReport")} />
         </IconView>
       </TopNav>
       <SearchView>
@@ -69,7 +69,12 @@ function Reports({ navigation }) {
       </SearchView>
       <ScrollView style={{ marginBottom: "20%" }}>
         {reports?.map((report, index) => (
-          <ReportCard key={index} data={report} isOwner={false} />
+          <ReportCard
+            key={index}
+            data={report}
+            isOwner={false}
+            navigation={navigation}
+          />
         ))}
       </ScrollView>
       <NavigationBottomBar navigation={navigation} />

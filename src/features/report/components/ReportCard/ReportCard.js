@@ -4,7 +4,8 @@ import { Location, Title, ButtonView } from './ReportCard.style';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { View } from 'react-native';
 
-function ReportCard({ data, isOwner }) {
+function ReportCard({ data, isOwner, deleteFunc, navigation }) {
+
   return (
     <Card>
       <Title>{data.title}</Title>
@@ -46,6 +47,7 @@ function ReportCard({ data, isOwner }) {
               marginBottom: 0,
             }}
             title="Edit"
+            onPress={() => navigation.navigate('EditReport', { id: data._id })}
           />
         </View>
         <View style={{ width: "50%", margin: 10 }}>
@@ -67,6 +69,7 @@ function ReportCard({ data, isOwner }) {
               marginBottom: 0,
             }}
             title="Delete"
+            onPress={() => { deleteFunc(data._id) }}
           />
 
         </View>
