@@ -3,6 +3,7 @@ import { useState } from "react";
 import { StyleSheet, Text, View, TextInput, Button, Alert, Pressable } from "react-native";
 import { POST } from "../../helpers/httphelper";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { LoginImageContainer } from './Login.style';
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState("pramud@gmail.com");
@@ -45,9 +46,12 @@ const Login = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <LoginImageContainer>
+        <Image source={require('../../../assets/log.png')} style={{ width: 250, height: 100 }} />
+      </LoginImageContainer>
       <Text style={styles.title}>Please Login</Text>
       <TextInput style={styles.input} placeholder="Enter your email" onChangeText={(email) => setEmail(email)} />
-      <TextInput style={styles.input} placeholder="Enter your password" onChangeText={(text) => setPassword(text)} />
+      <TextInput secureTextEntry={true} style={styles.input} placeholder="Enter your password" onChangeText={(text) => setPassword(text)} />
       <Button style={styles.button} title="Login" onPress={() => login()} />
       <Pressable onPress={() => navigation.navigate("Register")}>
         <View>

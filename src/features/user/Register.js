@@ -31,12 +31,15 @@ function Register({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Image source={require('../../../assets/favicon.png')} style={styles.image} />
+      <LoginImageContainer>
+        <Image source={require('../../../assets/logo.png')} style={{ width: 250, height: 100 }} />
+      </LoginImageContainer>
+      {/* <Image source={require('../../../assets/favicon.png')} style={styles.image} /> */}
       <Text style={styles.title}>Please Register</Text>
       <TextInput style={styles.input} placeholder="Enter your first name" onChangeText={(text) => setFname(text)} />
       <TextInput style={styles.input} placeholder="Enter your last name" onChangeText={(text) => setLname(text)} />
       <TextInput style={styles.input} placeholder="Enter your email" onChangeText={(email) => setEmail(email)} />
-      <TextInput style={styles.input} placeholder="Enter your password" onChangeText={(text) => setPassword(text)} />
+      <TextInput style={styles.input} secureTextEntry={true} placeholder="Enter your password" onChangeText={(text) => setPassword(text)} />
       <Button style={styles.button} title="Register" onPress={() => register()} />
       <Pressable onPress={() => navigation.navigate("Login")}>
         <View>
