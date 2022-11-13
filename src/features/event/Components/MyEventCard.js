@@ -8,7 +8,7 @@ import { NavigatorIOS } from 'react-native';
 import { View, Image } from "react-native";
 
 
-function MyEventCard({ item, del, navmethod }) {
+function MyEventCard({ item, del, navmethod, type = false }) {
     return (
         <Card>
             <Mycardcontent>
@@ -33,17 +33,18 @@ function MyEventCard({ item, del, navmethod }) {
                         Venue {item.venue}
                     </MyCardInfo>
 
+                    {!type &&
+                        <Controls>
+                            <UpdateButton onPress={() => navmethod(item)}>
+                                <FontAwesome5 name='edit' size={20} color="orange" />
+                            </UpdateButton>
 
-                    <Controls>
-                        <UpdateButton onPress={() => navmethod(item)}>
-                            <FontAwesome5 name='edit' size={20} color="orange" />
-                        </UpdateButton>
+                            <DeleteButton>
+                                <MaterialCommunityIcons onPress={() => del(item._id)} name='delete-outline' color="red" size={30} />
+                            </DeleteButton>
 
-                        <DeleteButton>
-                            <MaterialCommunityIcons onPress={() => del(item._id)} name='delete-outline' color="red" size={30} />
-                        </DeleteButton>
-
-                    </Controls>
+                        </Controls>
+                    }
                 </CardContent>
             </Mycardcontent>
 
