@@ -3,10 +3,11 @@ import SideBar from "../../../../components/SideBar";
 import { Container, PageTitle, TopNav, IconView, SearchView } from "../Reports/Reports.style";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { View, ScrollView } from "react-native";
+import { useIsFocused } from '@react-navigation/native';
 import { Searchbar } from 'react-native-paper';
 import { useEffect, useState } from "react";
 import ReportCard from "../../components/ReportCard/ReportCard";
-import { GET, POST } from '../../../../helpers/httphelper';
+import { GET, POST, DELETE } from '../../../../helpers/httphelper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function MyReports({ navigation }) {
@@ -14,11 +15,24 @@ function MyReports({ navigation }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [reports, setReports] = useState([]);
   const [userId, setUserId] = useState('');
+  const focus = useIsFocused();
+
+  const handleDeleteReportById = async (id) => {
+    try {
+      const res = await DELETE(`api/reports/delete/${id}`, {});
+      alert(res.message);
+      handleFetchAllReportsById();
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   const handleFetchAllReportsById = async () => {
     try {
-      const res = await GET('api/reports/get/user/63669d82bc8b0b0fc878354a');
-      setReports(res.data);
+      if (userId !== '') {
+        const res = await GET(`api/reports/get/user/${userId}`);
+        setReports(res.data);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -26,12 +40,13 @@ function MyReports({ navigation }) {
 
   const handleGetUserId = async () => {
     try {
-      const value = await AsyncStorage.getItem('uid')
+      const value = await AsyncStorage.getItem('uid');
       if (value !== null) {
-        setUserId(value)
+        setUserId(value);
+        handleFetchAllReportsById();
       }
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   }
 
@@ -42,11 +57,10 @@ function MyReports({ navigation }) {
       } else {
         let ob = {
           title: searchQuery,
-          user: "63669d82bc8b0b0fc878354a"
+          user: userId
         }
         const res = await POST('api/reports/search/user', ob);
         setReports(res.data);
-        console.log(res)
       }
     } catch (err) {
       console.log(err);
@@ -54,9 +68,12 @@ function MyReports({ navigation }) {
   }
 
   useEffect(() => {
-    handleFetchAllReportsById();
     handleGetUserId();
-  }, []);
+  }, [focus]);
+
+  useEffect(() => {
+    handleFetchAllReportsById();
+  }, [userId]);
 
   useEffect(() => {
     handleSearchByName();
@@ -71,7 +88,7 @@ function MyReports({ navigation }) {
           <PageTitle>My Reports</PageTitle>
         </View>
         <IconView>
-          <Icon name="plus-circle" size={32} color="#42a1f5" />
+          <Icon name="plus-circle" size={32} color="#42a1f5" onPress={() => navigation.navigate("CreateReport")} />
         </IconView>
       </TopNav>
       <SearchView>
@@ -84,7 +101,13 @@ function MyReports({ navigation }) {
       </SearchView>
       <ScrollView style={{ marginBottom: "20%" }}>
         {reports?.map((report, index) => (
-          <ReportCard key={index} data={report} isOwner={true} />
+          <ReportCard
+            key={index}
+            data={report}
+            isOwner={true}
+            deleteFunc={handleDeleteReportById}
+            navigation={navigation}
+          />
         ))}
       </ScrollView>
       <NavigationBottomBar navigation={navigation} />
