@@ -17,7 +17,7 @@ function AddEvent(props) {
     const [time, settime] = useState('');
     const [description, setdescription] = useState('');
     const [img, setImg] = useState('');
-
+    const path = "http://10.0.2.2:8070"
 
     useEffect(() => {
         getData()
@@ -80,7 +80,7 @@ function AddEvent(props) {
 
         };
 
-        axios.post('http://192.168.1.122:8070/api/event/add', newEvent)
+        axios.post(`${path}/api/event/add`, newEvent)
             .then(data => {
                 console.log(data.data)
                 alert("successfully created")

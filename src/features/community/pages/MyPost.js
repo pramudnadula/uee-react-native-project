@@ -12,6 +12,7 @@ function MyPost({ navigation, route }) {
     const [data, setdate] = useState([])
     const [uid, setuid] = useState('')
     const [searchQuery, setSearchQuery] = useState('')
+    const path = "http://10.0.2.2:8070"
 
     useEffect(() => {
         search()
@@ -22,7 +23,7 @@ function MyPost({ navigation, route }) {
             getData2()
         }
         else {
-            axios.post('http://192.168.1.23:8070/api/post/search', { title: searchQuery }).then(data => {
+            axios.post(`${path}/api/post/search`, { title: searchQuery }).then(data => {
                 setdate(data.data.data)
             }).catch(err => {
                 console.log(err)
@@ -51,7 +52,7 @@ function MyPost({ navigation, route }) {
 
     }, [data])
     const getData = (id) => {
-        axios.post('192.168.1.122:8070/api/post/allmy', { uid: id }).then(data => {
+        axios.post(`${path}/api/post/allmy`, { uid: id }).then(data => {
             setdate(data.data)
         }).catch(err => {
             console.log(err)
@@ -59,7 +60,7 @@ function MyPost({ navigation, route }) {
     }
 
     const deleteEvent = (id) => {
-        axios.post('http://192.168.1.122:8070/api/post/del', { pid: id }).then(data => {
+        axios.post(`${path}/api/post/del`, { pid: id }).then(data => {
             console.log(data)
             getData2()
         }).catch(err => {

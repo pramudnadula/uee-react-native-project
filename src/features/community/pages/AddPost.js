@@ -26,6 +26,7 @@ function AddPost(props) {
     const toggleSwitch1 = () => setIsEnabled1(previousState => !previousState);
     const toggleSwitch2 = () => setIsEnabled2(previousState => !previousState);
     const [type, settype] = useState('')
+    const path = "http://10.0.2.2:8070"
     // const pickImage = async () => {
 
     //     let result = await ImagePicker.launchImageLibraryAsync({
@@ -125,7 +126,7 @@ function AddPost(props) {
             img4: url4,
             uid
         }
-        axios.post('http://192.168.1.23:8070/api/post/add', ob).then(data => {
+        axios.post(`${path}/api/post/add`, ob).then(data => {
             console.log(data.data)
         }).catch(err => {
             console.log(err)

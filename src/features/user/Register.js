@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TextInput, Button, Alert, Pressable, Image } from "react-native";
 import { useState } from "react";
 import { POST } from "../../helpers/httphelper";
+import { Back2, ContentWrapper, LogoImage, LogoImage2, LogoWrapper } from "../community/styles/all";
 
 function Register({ navigation }) {
   const [fname, setFname] = useState("");
@@ -31,24 +32,28 @@ function Register({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <LoginImageContainer>
-        <Image source={require('../../../assets/logo.png')} style={{ width: 250, height: 100 }} />
-      </LoginImageContainer>
-      {/* <Image source={require('../../../assets/favicon.png')} style={styles.image} /> */}
-      <Text style={styles.title}>Please Register</Text>
-      <TextInput style={styles.input} placeholder="Enter your first name" onChangeText={(text) => setFname(text)} />
-      <TextInput style={styles.input} placeholder="Enter your last name" onChangeText={(text) => setLname(text)} />
-      <TextInput style={styles.input} placeholder="Enter your email" onChangeText={(email) => setEmail(email)} />
-      <TextInput style={styles.input} secureTextEntry={true} placeholder="Enter your password" onChangeText={(text) => setPassword(text)} />
-      <Button style={styles.button} title="Register" onPress={() => register()} />
-      <Pressable onPress={() => navigation.navigate("Login")}>
-        <View>
-          <Text style={styles.link}>
-            Login
-          </Text>
-        </View>
-      </Pressable>
+      <Back2 source={require('../../../assets/backk.png')}>
+        <ContentWrapper>
 
+          <LogoImage2 source={require('../../../assets/logo.png')} />
+
+
+          {/* <Image source={require('../../../assets/favicon.png')} style={styles.image} /> */}
+          <Text style={styles.title}>Please Register</Text>
+          <TextInput style={styles.input} placeholder="Enter your first name" onChangeText={(text) => setFname(text)} />
+          <TextInput style={styles.input} placeholder="Enter your last name" onChangeText={(text) => setLname(text)} />
+          <TextInput style={styles.input} placeholder="Enter your email" onChangeText={(email) => setEmail(email)} />
+          <TextInput style={styles.input} secureTextEntry={true} placeholder="Enter your password" onChangeText={(text) => setPassword(text)} />
+          <Button style={styles.button} title="Register" onPress={() => register()} />
+          <Pressable onPress={() => navigation.navigate("Login")}>
+            <View>
+              <Text style={styles.link}>
+                Login
+              </Text>
+            </View>
+          </Pressable>
+        </ContentWrapper>
+      </Back2>
     </View>
   );
 }
@@ -69,7 +74,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   input: {
-    borderRadius: 20,
+    borderRadius: 5,
     width: 250,
     height: 40,
     margin: 12,

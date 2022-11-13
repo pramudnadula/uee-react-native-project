@@ -39,11 +39,18 @@ width: 100%;
 `
 
 export const LogoWrapper = styled.View`
-
+margin-top:200px;
 `
 export const LogoImage = styled.Image`
 width: 200px;
+z-index:3;
 height: 200px;
+`
+
+export const LogoImage2 = styled.Image`
+width: 200px;
+height: 200px;
+margin-top:100px;
 `
 export const HeaderRow = styled.View`
 display: flex;

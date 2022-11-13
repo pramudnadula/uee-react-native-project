@@ -1,9 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { StyleSheet, Text, View, TextInput, Button, Alert, Pressable } from "react-native";
+import { StyleSheet, Text, View, TextInput, Button, Alert, Pressable, Image } from "react-native";
 import { POST } from "../../helpers/httphelper";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LoginImageContainer } from './Login.style';
+import { Back2, ContentWrapper, LogoImage, LogoWrapper } from "../community/styles/all";
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState("pramud@gmail.com");
@@ -46,21 +47,26 @@ const Login = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <LoginImageContainer>
-        <Image source={require('../../../assets/log.png')} style={{ width: 250, height: 100 }} />
-      </LoginImageContainer>
-      <Text style={styles.title}>Please Login</Text>
-      <TextInput style={styles.input} placeholder="Enter your email" onChangeText={(email) => setEmail(email)} />
-      <TextInput secureTextEntry={true} style={styles.input} placeholder="Enter your password" onChangeText={(text) => setPassword(text)} />
-      <Button style={styles.button} title="Login" onPress={() => login()} />
-      <Pressable onPress={() => navigation.navigate("Register")}>
-        <View>
-          <Text style={styles.link}>
-            Signup
-          </Text>
-        </View>
-      </Pressable>
+      <Back2 source={require('../../../assets/backk.png')}>
+        <ContentWrapper>
+          <LogoWrapper>
+            <LogoImage source={require('../../../assets/log.png')} style={{ width: 250, height: 100 }} />
+          </LogoWrapper>
 
+
+          <Text style={styles.title}>Please Login</Text>
+          <TextInput style={styles.input} placeholder="Enter your email" onChangeText={(email) => setEmail(email)} />
+          <TextInput secureTextEntry={true} style={styles.input} placeholder="Enter your password" onChangeText={(text) => setPassword(text)} />
+          <Button style={styles.button} title="Login" onPress={() => login()} />
+          <Pressable onPress={() => navigation.navigate("Register")}>
+            <View>
+              <Text style={styles.link}>
+                Signup
+              </Text>
+            </View>
+          </Pressable>
+        </ContentWrapper>
+      </Back2>
     </View>
   );
 };
@@ -86,7 +92,9 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   title: {
-    fontSize: 20,
+    fontSize: 30,
+    marginBottom: 20,
+    marginTop: 30,
     fontWeight: "bold",
   },
   link: {
