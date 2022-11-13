@@ -67,3 +67,17 @@ margin-top: 13px;
 justify-content: space-around;
 flex-direction: row;
 `
+
+export const SearchView = styled.View`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+`
+
+export const PageTitle = styled.Text`
+  margin-top: 30px;
+  font-size: 32px;
+  font-weight: 700;
+`;

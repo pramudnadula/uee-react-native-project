@@ -51,15 +51,15 @@ function MyPost({ navigation, route }) {
 
     }, [data])
     const getData = (id) => {
-        axios.post('http://192.168.1.23:8070/api/post/allmy', { uid: id }).then(data => {
+        axios.post('192.168.1.122:8070/api/post/allmy', { uid: id }).then(data => {
             setdate(data.data)
         }).catch(err => {
             console.log(err)
         })
     }
 
-    const deletePost = (id) => {
-        axios.post('http://192.168.1.23:8070/api/post/del', { pid: id }).then(data => {
+    const deleteEvent = (id) => {
+        axios.post('http://192.168.1.122:8070/api/post/del', { pid: id }).then(data => {
             console.log(data)
             getData2()
         }).catch(err => {
@@ -82,7 +82,7 @@ function MyPost({ navigation, route }) {
                     onPress: () => console.log("Cancel Pressed"),
                     style: "cancel"
                 },
-                { text: "OK", onPress: () => deletePost(id) }
+                { text: "OK", onPress: () => deleteEvent(id) }
             ]
         );
 
