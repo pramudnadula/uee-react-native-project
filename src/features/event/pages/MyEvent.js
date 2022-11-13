@@ -29,7 +29,7 @@ function MyEvent({ navigation }) {
         getData2()
 
 
-    }, [])
+    }, [data])
     const getData = (id) => {
         axios.post('http://192.168.1.122:8070/api/event/myevent', { uid: id }).then(data => {
             setdate(data.data)
@@ -76,14 +76,14 @@ function MyEvent({ navigation }) {
                 <PageTitle>My Events</PageTitle>
             </View>
 
-            <SearchView>
+            {/* <SearchView>
                 <Searchbar
                     placeholder="Search"
                     // onChangeText={(query) => setSearchQuery(query)}
                     // value={searchQuery}
                     style={{ width: "90%" }}
                 />
-            </SearchView>
+            </SearchView> */}
 
             <FlatList
                 data={data}
