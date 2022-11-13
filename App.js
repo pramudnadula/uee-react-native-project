@@ -20,6 +20,7 @@ import MyReports from "./src/features/report/pages/MyReports/MyReports";
 import EditPost from "./src/features/community/pages/EditPost";
 import CreateReport from "./src/features/report/pages/CreateReport/CreateReport";
 import EditReport from "./src/features/report/pages/EditReport/EditReport";
+import EditEvent from "./src/features/event/pages/EditEvent";
 
 
 
@@ -54,6 +55,7 @@ export default function App() {
         <Stack.Screen name="allevent" component={AllEvent} />
         <Stack.Screen name="myevent" component={MyEvent} />
         <Stack.Screen name="editpost" component={EditPost} />
+        <Stack.Screen name="editevent" component={EditEvent} />
         <Stack.Screen name="Reports" component={Reports} />
         <Stack.Screen name="MyReports" component={MyReports} />
         <Stack.Screen name="CreateReport" component={CreateReport} />
