@@ -8,6 +8,8 @@ import axios from 'axios';
 import logo from '.././../../../assets/im.jpg'
 import { ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ContentWrapper, ImageWrapper } from '../styles/all';
+import { HeadText } from '../styles/mypost';
 function AddPost(props) {
     const [selectedLanguage, setSelectedLanguage] = useState('');
     const [image, setImage] = useState(null);
@@ -132,176 +134,182 @@ function AddPost(props) {
     }
     return (
         <Container>
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <TitleText>Select the Template</TitleText>
-                <InputContainer>
-                    <SelectContainer>
-                        <ImageContainer>
-                            <SelectImage source={require('../../../../assets/im.jpg')} />
-                            <RadioButton status={type === 1 ? 'checked' : 'unchecked'} onPress={() => settype(1)} />
-                        </ImageContainer>
-                        <ImageContainer>
-                            <SelectImage source={require('../../../../assets/im.jpg')} />
-                            <RadioButton status={type === 2 ? 'checked' : 'unchecked'} onPress={() => settype(2)} />
-                        </ImageContainer>
-                        <ImageContainer>
-                            <SelectImage source={require('../../../../assets/im.jpg')} />
-                            <RadioButton status={type === 3 ? 'checked' : 'unchecked'} onPress={() => settype(3)} />
-                        </ImageContainer>
-                    </SelectContainer>
-                    <InputView>
-                        <Text>Post Category</Text>
-                        <Picker
-                            selectedValue={selectedLanguage}
-                            onValueChange={(itemValue, itemIndex) =>
-                                setSelectedLanguage(itemValue)
-                            }
-                            itemStyle={{ backgroundColor: "#dddddd6" }}
-                        >
-                            <Picker.Item label="Select one" value="n" />
-                            <Picker.Item label="Event" value="e" />
-                            <Picker.Item label="Article" value="a" />
-                            <Picker.Item label="Photos" value="p" />
-                        </Picker>
-                    </InputView>
 
-                    <InputView>
-                        <Text>Post Title</Text>
-                        <Input placeholder={"Enter the Post title"} onChangeText={newtext => settitle(newtext)} />
-                    </InputView>
+            <ImageWrapper source={require('../../../../assets/backk.png')}>
+                <ContentWrapper>
+                    <HeadText>Create Post</HeadText>
+                    <ScrollView showsVerticalScrollIndicator={false}>
+                        <TitleText style={{ fontWeight: "bold", color: "grey", fontSize: 17 }}>Select the Template</TitleText>
+                        <InputContainer>
+                            <SelectContainer>
+                                <ImageContainer>
+                                    <SelectImage source={require('../../../../assets/im.jpg')} />
+                                    <RadioButton color='#0099FF' status={type === 1 ? 'checked' : 'unchecked'} onPress={() => settype(1)} />
+                                </ImageContainer>
+                                <ImageContainer>
+                                    <SelectImage source={require('../../../../assets/im.jpg')} />
+                                    <RadioButton color='#0099FF' status={type === 2 ? 'checked' : 'unchecked'} onPress={() => settype(2)} />
+                                </ImageContainer>
+                                <ImageContainer>
+                                    <SelectImage source={require('../../../../assets/im.jpg')} />
+                                    <RadioButton color='#0099FF' status={type === 3 ? 'checked' : 'unchecked'} onPress={() => settype(3)} />
+                                </ImageContainer>
+                            </SelectContainer>
+                            <InputView>
+                                <Text style={{ fontWeight: "bold", color: "grey", fontSize: 17 }}>Post Category</Text>
+                                <Picker
+                                    selectedValue={selectedLanguage}
+                                    onValueChange={(itemValue, itemIndex) =>
+                                        setSelectedLanguage(itemValue)
+                                    }
+                                    itemStyle={{ backgroundColor: "#dddddd6" }}
+                                >
+                                    <Picker.Item label="Select one" value="n" />
+                                    <Picker.Item label="Event" value="e" />
+                                    <Picker.Item label="Article" value="a" />
+                                    <Picker.Item label="Photos" value="p" />
+                                </Picker>
+                            </InputView>
 
-
-                    <InputView>
-                        {url1 === '' ? <><Text>Image 1 URL</Text>
-                            <Input placeholder={"Enter the Image url"} onChangeText={newtext => seturl1(newtext)} /></> : <>
-                            <VisibleImageBox>
-                                <AddImage source={{ uri: url1 }} />
-                                <EditButton>
-                                    <Button title='Edit' onPress={() => seturl1('')} />
-                                </EditButton>
-
-                            </VisibleImageBox>
-
-                        </>}
-
-                    </InputView>
-                    {type === 3 ? <><InputView>
-                        {url2 === '' ? <><Text>Image 2 URL</Text>
-                            <Input placeholder={"Enter the Image url"} onChangeText={newtext => seturl2(newtext)} /></> : <>
-                            <VisibleImageBox>
-                                <AddImage source={{ uri: url2 }} />
-                                <EditButton>
-                                    <Button title='Edit' onPress={() => seturl2('')} />
-                                </EditButton>
-
-                            </VisibleImageBox>
-
-                        </>}
-
-                    </InputView>
+                            <InputView>
+                                <Text style={{ fontWeight: "bold", color: "grey", fontSize: 17 }}>Post Title</Text>
+                                <Input placeholder={"Enter the Post title"} onChangeText={newtext => settitle(newtext)} />
+                            </InputView>
 
 
-                        <InputView>
-                            {url3 === '' ? <><Text>Image 3 URL</Text>
-                                <Input placeholder={"Enter the Image url"} onChangeText={newtext => seturl3(newtext)} /></> : <>
-                                <VisibleImageBox>
-                                    <AddImage source={{ uri: url3 }} />
-                                    <EditButton>
-                                        <Button title='Edit' onPress={() => seturl3('')} />
-                                    </EditButton>
+                            <InputView>
+                                {url1 === '' ? <><Text style={{ fontWeight: "bold", color: "grey", fontSize: 17 }}>Image 1 URL</Text>
+                                    <Input placeholder={"Enter the Image url"} onChangeText={newtext => seturl1(newtext)} /></> : <>
+                                    <VisibleImageBox>
+                                        <AddImage source={{ uri: url1 }} />
+                                        <EditButton>
+                                            <Button title='Edit' onPress={() => seturl1('')} />
+                                        </EditButton>
 
-                                </VisibleImageBox>
+                                    </VisibleImageBox>
 
-                            </>}
+                                </>}
 
-                        </InputView>
+                            </InputView>
+                            {type === 3 ? <><InputView>
+                                {url2 === '' ? <><Text style={{ fontWeight: "bold", color: "grey", fontSize: 17 }}>Image 2 URL</Text>
+                                    <Input placeholder={"Enter the Image url"} onChangeText={newtext => seturl2(newtext)} /></> : <>
+                                    <VisibleImageBox>
+                                        <AddImage source={{ uri: url2 }} />
+                                        <EditButton>
+                                            <Button title='Edit' onPress={() => seturl2('')} />
+                                        </EditButton>
 
+                                    </VisibleImageBox>
 
+                                </>}
 
-                        <InputView>
-                            {url4 === '' ? <><Text>Image 4 URL</Text>
-                                <Input placeholder={"Enter the Image url"} onChangeText={newtext => seturl4(newtext)} /></> : <>
-                                <VisibleImageBox>
-                                    <AddImage source={{ uri: url4 }} />
-                                    <EditButton>
-                                        <Button title='Edit' onPress={() => seturl4('')} />
-                                    </EditButton>
-
-                                </VisibleImageBox>
-
-                            </>}
-
-                        </InputView>
-                    </> : <></>}
-                    {type === 2 ? <>
-                        <InputView>
-                            {url2 === '' ? <><Text>Image 2 URL</Text>
-                                <Input placeholder={"Enter the Image url"} onChangeText={newtext => seturl2(newtext)} /></> : <>
-                                <VisibleImageBox>
-                                    <AddImage source={{ uri: url2 }} />
-                                    <EditButton>
-                                        <Button title='Edit' onPress={() => seturl2('')} />
-                                    </EditButton>
-
-                                </VisibleImageBox>
-
-                            </>}
-
-                        </InputView>
+                            </InputView>
 
 
-                        <InputView>
-                            {url3 === '' ? <><Text>Image 3 URL</Text>
-                                <Input placeholder={"Enter the Image url"} onChangeText={newtext => seturl3(newtext)} /></> : <>
-                                <VisibleImageBox>
-                                    <AddImage source={{ uri: url3 }} />
-                                    <EditButton>
-                                        <Button title='Edit' onPress={() => seturl3('')} />
-                                    </EditButton>
+                                <InputView>
+                                    {url3 === '' ? <><Text style={{ fontWeight: "bold", color: "grey", fontSize: 17 }}>Image 3 URL</Text>
+                                        <Input placeholder={"Enter the Image url"} onChangeText={newtext => seturl3(newtext)} /></> : <>
+                                        <VisibleImageBox>
+                                            <AddImage source={{ uri: url3 }} />
+                                            <EditButton>
+                                                <Button title='Edit' onPress={() => seturl3('')} />
+                                            </EditButton>
 
-                                </VisibleImageBox>
+                                        </VisibleImageBox>
 
-                            </>}
+                                    </>}
 
-                        </InputView>
-
-                    </> : <></>}
+                                </InputView>
 
 
-                    <InputTextArea>
-                        <Text>Post Description</Text>
-                        <Input placeholder={"Enter the Description"} multiline={true} onChangeText={newtext => setdes(newtext)} />
-                    </InputTextArea>
 
-                    <SwichGroup>
-                        <OneSwitch>
-                            <Text>Likes</Text>
-                            <Switch
-                                trackColor={{ false: '#767577', true: '#81b0ff' }}
-                                thumbColor={isEnabled1 ? '#f5dd4b' : '#f4f3f4'}
-                                ios_backgroundColor="#3e3e3e"
-                                onValueChange={toggleSwitch1}
-                                value={isEnabled1}
-                            />
-                        </OneSwitch>
+                                <InputView>
+                                    {url4 === '' ? <><Text style={{ fontWeight: "bold", color: "grey", fontSize: 17 }}>Image 4 URL</Text>
+                                        <Input placeholder={"Enter the Image url"} onChangeText={newtext => seturl4(newtext)} /></> : <>
+                                        <VisibleImageBox>
+                                            <AddImage source={{ uri: url4 }} />
+                                            <EditButton>
+                                                <Button title='Edit' onPress={() => seturl4('')} />
+                                            </EditButton>
 
-                        <OneSwitch>
-                            <Text>Comments</Text>
-                            <Switch
-                                trackColor={{ false: '#767577', true: '#81b0ff' }}
-                                thumbColor={isEnabled2 ? '#f5dd4b' : '#f4f3f4'}
-                                ios_backgroundColor="#3e3e3e"
-                                onValueChange={toggleSwitch2}
-                                value={isEnabled2}
-                            />
-                        </OneSwitch>
-                    </SwichGroup>
-                </InputContainer>
+                                        </VisibleImageBox>
 
-                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                    <Button title="Create" color="green" onPress={() => submitData()} />
-                </View>
-            </ScrollView>
+                                    </>}
+
+                                </InputView>
+                            </> : <></>}
+                            {type === 2 ? <>
+                                <InputView>
+                                    {url2 === '' ? <><Text style={{ fontWeight: "bold", color: "grey", fontSize: 17 }}>Image 2 URL</Text>
+                                        <Input placeholder={"Enter the Image url"} onChangeText={newtext => seturl2(newtext)} /></> : <>
+                                        <VisibleImageBox>
+                                            <AddImage source={{ uri: url2 }} />
+                                            <EditButton>
+                                                <Button title='Edit' onPress={() => seturl2('')} />
+                                            </EditButton>
+
+                                        </VisibleImageBox>
+
+                                    </>}
+
+                                </InputView>
+
+
+                                <InputView>
+                                    {url3 === '' ? <><Text style={{ fontWeight: "bold", color: "grey", fontSize: 17 }}>Image 3 URL</Text>
+                                        <Input placeholder={"Enter the Image url"} onChangeText={newtext => seturl3(newtext)} /></> : <>
+                                        <VisibleImageBox>
+                                            <AddImage source={{ uri: url3 }} />
+                                            <EditButton>
+                                                <Button title='Edit' onPress={() => seturl3('')} />
+                                            </EditButton>
+
+                                        </VisibleImageBox>
+
+                                    </>}
+
+                                </InputView>
+
+                            </> : <></>}
+
+
+                            <InputTextArea>
+                                <Text style={{ fontWeight: "bold", color: "grey", fontSize: 17 }}>Post Description</Text>
+                                <Input placeholder={"Enter the Description"} multiline={true} numberOfLines={10} textAlignVertical="top" onChangeText={newtext => setdes(newtext)} />
+                            </InputTextArea>
+
+                            <SwichGroup>
+                                <OneSwitch>
+                                    <Text style={{ fontWeight: "bold", color: "grey", fontSize: 17 }}>Likes</Text>
+                                    <Switch
+                                        trackColor={{ false: '#767577', true: '#0099FF' }}
+                                        thumbColor={isEnabled1 ? '#0099FF' : '#f4f3f4'}
+                                        ios_backgroundColor="#3e3e3e"
+                                        onValueChange={toggleSwitch1}
+                                        value={isEnabled1}
+                                    />
+                                </OneSwitch>
+
+                                <OneSwitch>
+                                    <Text style={{ fontWeight: "bold", color: "grey", fontSize: 17 }}>Comments</Text>
+                                    <Switch
+                                        trackColor={{ false: '#767577', true: '#0099FF' }}
+                                        thumbColor={isEnabled2 ? '#0099FF' : '#f4f3f4'}
+                                        ios_backgroundColor="#3e3e3e"
+                                        onValueChange={toggleSwitch2}
+                                        value={isEnabled2}
+                                    />
+                                </OneSwitch>
+                            </SwichGroup>
+                        </InputContainer>
+
+                        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginBottom: 40 }}>
+                            <Button title="Create" color="green" onPress={() => submitData()} />
+                        </View>
+                    </ScrollView>
+                </ContentWrapper>
+            </ImageWrapper>
         </Container>
     );
 }

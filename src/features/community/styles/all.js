@@ -5,11 +5,50 @@ flex: 1;
 background-color: #fff;
 margin-top: 40px;
 align-items:center;
+width: 100%;
+height: 100%;
 `
 
+export const ImageWrapper = styled.ImageBackground`
+height: 100%;
+width: 100%;
+`
+
+export const Back2 = styled.ImageBackground`
+height: 100%;
+width: 100%;
+`
+export const ContentWrapper = styled.View`
+justify-content: center;
+align-items: center;
+width: 100%;
+`
+
+export const ContentWrapper2 = styled.View`
+margin-top: 80px;
+justify-content: center;
+align-items: center;
+width: 100%;
+`
+
+export const ContentWrapper3 = styled.View`
+margin-top: 30px;
+justify-content: center;
+align-items: center;
+width: 100%;
+`
+
+export const LogoWrapper = styled.View`
+
+`
+export const LogoImage = styled.Image`
+width: 200px;
+height: 200px;
+`
 export const HeaderRow = styled.View`
 display: flex;
 flex-direction: row;
+margin-left: 60px;
 justify-content: center;
 align-items: center;
 `
@@ -21,6 +60,7 @@ margin-left: 40px;
 
 export const AllText = styled.Text`
 font-size: 35px;
+color: #0099FF;
 `
 
 export const AddButton = styled.TouchableOpacity`
@@ -33,6 +73,15 @@ background-color: #f8f8f8;
 width: 100%;
 margin-bottom: 10px;
 border-bottom: 10px;
+`
+
+export const Car2 = styled.View`
+background-color: #ccf5ff;
+width: 100%;
+margin-bottom: 10px;
+border-bottom: 10px;
+border-radius: 10px;
+padding: 5px;
 `
 
 
@@ -157,7 +206,7 @@ font-size: 12px;
 font-weight: bold;
 color: #333;
 margin-top: 5px;
-color: ${props => props.active ? '#2e64e5' : '#333'};
+color: ${props => props.active ? '#0099FF' : '#333'};
 margin-left: 5px;
 `
 

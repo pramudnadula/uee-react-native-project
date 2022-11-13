@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from '../styles/all';
+import { Car2, Card, Card2 } from '../styles/all';
 import { CardContent, Controls, DeleteButton, Mycardcontent, MyCardImage, MyCardInfo, MyCardTitle, UpdateButton } from '../styles/mypost';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -8,7 +8,7 @@ import { NavigatorIOS } from 'react-native';
 
 function MyCard({ item, del, navmethod }) {
     return (
-        <Card>
+        <Car2>
             <Mycardcontent>
                 <MyCardTitle>
                     {item.title}
@@ -31,7 +31,7 @@ function MyCard({ item, del, navmethod }) {
                 </CardContent>
             </Mycardcontent>
 
-        </Card>
+        </Car2>
     );
 }
 

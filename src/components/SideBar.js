@@ -2,13 +2,13 @@ import { useState } from "react";
 import { Image, Pressable, Dimensions, ScrollView, StyleSheet, Text, View } from "react-native"
 import { SideBarDetails } from "../service/Data";
 
-function SideBar({ navigation }) {
+function SideBar({ navigation, ind }) {
     const [isOpen, setIsOpen] = useState(false)
 
     return (
         <>
             <View>
-                <Pressable onPress={() => setIsOpen(true)} style={styles.menuButton}>
+                <Pressable onPress={() => setIsOpen(true)} style={ind ? styles.menuButton2 : styles.menuButton}>
                     <Image source={require("../../assets/sidebar.png")} style={styles.sideButton} />
                 </Pressable>
                 {isOpen &&
@@ -39,6 +39,12 @@ const height = Dimensions.get('window').height;
 const styles = StyleSheet.create({
     menuButton: {
         marginTop: 20,
+        position: "absolute",
+        right: 140,
+        zIndex: 1
+    },
+    menuButton2: {
+        marginTop: 0,
         position: "absolute",
         right: 140,
         zIndex: 1
