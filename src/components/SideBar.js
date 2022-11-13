@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Image, Pressable, Dimensions, ScrollView, StyleSheet, Text, View } from "react-native"
 import { SideBarDetails } from "../service/Data";
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { AntDesign } from '@expo/vector-icons';
 
 function SideBar({ navigation, ind }) {
     const [isOpen, setIsOpen] = useState(false)
@@ -26,6 +28,23 @@ function SideBar({ navigation, ind }) {
                                 </Pressable>
                             )
                         })}
+                        <Pressable onPress={() => navigation.navigate("Login")}
+                            style={{
+                                flexDirection: "row",
+                                alignItems: "center",
+                                justifyContent: "flex-start",
+                                marginTop: 'auto',
+                                marginBottom: '35%',
+                            }}>
+                            <AntDesign name="logout" size={24} color="black"
+                                style={{
+                                    width: 30,
+                                    height: 30,
+                                    marginLeft: 50,
+                                    marginTop: 14,
+                                }} />
+                            <Text style={styles.sideBarText}>Log Out</Text>
+                        </Pressable>
                     </View>
                     )}
             </View>
