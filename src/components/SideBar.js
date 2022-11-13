@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { Image, Pressable, Dimensions, ScrollView, StyleSheet, Text, View } from "react-native"
 import { SideBarDetails } from "../service/Data";
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { AntDesign } from '@expo/vector-icons';
 
-function SideBar({ navigation }) {
+function SideBar({ navigation, ind }) {
     const [isOpen, setIsOpen] = useState(false)
 
     return (
         <>
             <View>
-                <Pressable onPress={() => setIsOpen(true)} style={styles.menuButton}>
+                <Pressable onPress={() => setIsOpen(true)} style={ind ? styles.menuButton2 : styles.menuButton}>
                     <Image source={require("../../assets/sidebar.png")} style={styles.sideButton} />
                 </Pressable>
                 {isOpen &&
@@ -26,6 +28,23 @@ function SideBar({ navigation }) {
                                 </Pressable>
                             )
                         })}
+                        <Pressable onPress={() => navigation.navigate("Login")}
+                            style={{
+                                flexDirection: "row",
+                                alignItems: "center",
+                                justifyContent: "flex-start",
+                                marginTop: 'auto',
+                                marginBottom: '35%',
+                            }}>
+                            <AntDesign name="logout" size={24} color="black"
+                                style={{
+                                    width: 30,
+                                    height: 30,
+                                    marginLeft: 50,
+                                    marginTop: 14,
+                                }} />
+                            <Text style={styles.sideBarText}>Log Out</Text>
+                        </Pressable>
                     </View>
                     )}
             </View>
@@ -39,6 +58,12 @@ const height = Dimensions.get('window').height;
 const styles = StyleSheet.create({
     menuButton: {
         marginTop: 20,
+        position: "absolute",
+        right: 140,
+        zIndex: 1
+    },
+    menuButton2: {
+        marginTop: 0,
         position: "absolute",
         right: 140,
         zIndex: 1

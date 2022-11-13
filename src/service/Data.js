@@ -2,7 +2,7 @@ export const HomeDetails = [
     {
         title: "Marine Resources",
         image: require("../../assets/fish.png"),
-        screen: "MyMarianResources",
+        screen: "MarianResourcesHome",
         color: "#129BF7",
     },
     {

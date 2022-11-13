@@ -135,7 +135,7 @@ function PostCard({ item, type, visible, meth }) {
             <InteractionWrapper>
                 {item.like ? <>
                     <Interaction active={exist} onPress={() => addLike(item._id)}>
-                        <Ionicons name={exist ? "heart" : "heart-outline"} color={exist ? "#2e64e5" : "#333"} size={25} />
+                        <Ionicons name={exist ? "heart" : "heart-outline"} color={exist ? "#0099FF" : "#333"} size={25} />
                         <Interactiontext active={exist}>{item?.likes?.length !== 0 ? <>{item?.likes?.length}</> : <></>} Like</Interactiontext>
                     </Interaction>
                 </> : <></>}

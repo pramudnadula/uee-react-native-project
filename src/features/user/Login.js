@@ -2,11 +2,19 @@ import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { StyleSheet, Text, View, TextInput, Button, Alert, Pressable } from "react-native";
 import { POST } from "../../helpers/httphelper";
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState("pramud@gmail.com");
   const [password, setPassword] = useState("1234");
+
+  const storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem('uid', value)
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
   const login = async () => {
     const data = {
@@ -18,6 +26,7 @@ const Login = ({ navigation }) => {
       .then((res) => {
         if (res.message === "Login successful") {
           Alert.alert("Success login Success", res.message);
+          storeData(res.user._id);
           navigation.navigate("Home");
         } else if (res.message === "Wrong password") {
           Alert.alert("Password Wrong", res.message);
