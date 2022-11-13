@@ -8,6 +8,7 @@ function PostCard({ item, type, visible, meth }) {
     const [exist, setexist] = useState(false)
     const [uid, setuid] = useState('')
     const [post, setpost] = useState(item)
+    const path = "http://10.0.2.2:8070"
     useEffect(() => {
         getData2()
 
@@ -38,7 +39,7 @@ function PostCard({ item, type, visible, meth }) {
 
     const loadPost = (pid) => {
         console.log(pid)
-        axios.get('http://192.168.1.23:8070/api/post/one', { pid }).then(data => {
+        axios.get(`${path}/api/post/one`, { pid }).then(data => {
             setpost(data.data)
             getData2()
         }).catch(err => {
@@ -48,7 +49,7 @@ function PostCard({ item, type, visible, meth }) {
 
     const addLike = (pid) => {
         if (exist) {
-            axios.post('http://192.168.1.23:8070/api/post/delike', { uid, pid }).then(data => {
+            axios.post(`${path}/api/post/delike`, { uid, pid }).then(data => {
                 // setexist(!exist)
                 meth()
 
@@ -57,7 +58,7 @@ function PostCard({ item, type, visible, meth }) {
             })
         }
         else {
-            axios.post('http://192.168.1.23:8070/api/post/like', { uid, pid }).then(data => {
+            axios.post(`${path}/api/post/like`, { uid, pid }).then(data => {
                 //setexist(!exist)
                 meth()
 

@@ -28,6 +28,7 @@ function EditPost({ navigation, route }) {
     const toggleSwitch1 = () => setIsEnabled1(previousState => !previousState);
     const toggleSwitch2 = () => setIsEnabled2(previousState => !previousState);
     const [type, settype] = useState('')
+    const path = "http://10.0.2.2:8070"
     // const pickImage = async () => {
 
     //     let result = await ImagePicker.launchImageLibraryAsync({
@@ -139,7 +140,7 @@ function EditPost({ navigation, route }) {
             img4: url4,
             uid: post.uid
         }
-        axios.post('http://192.168.1.23:8070/api/post/update', { pid, newob: ob }).then(data => {
+        axios.post(`${path}/api/post/update`, { pid, newob: ob }).then(data => {
             Alert.alert(
                 "Updated",
                 "Post Updated successfully",

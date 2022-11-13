@@ -12,7 +12,7 @@ function MyEvent({ navigation }) {
 
     const [data, setdate] = useState([])
     const [uid, setuid] = useState('')
-
+    const path = "http://10.0.2.2:8070"
     const getData2 = async () => {
         try {
             const value = await AsyncStorage.getItem('uid')
@@ -31,7 +31,7 @@ function MyEvent({ navigation }) {
 
     }, [data])
     const getData = (id) => {
-        axios.post('http://192.168.1.122:8070/api/event/myevent', { uid: id }).then(data => {
+        axios.post(`${path}/api/event/myevent`, { uid: id }).then(data => {
             setdate(data.data)
         }).catch(err => {
             console.log(err)
@@ -39,7 +39,7 @@ function MyEvent({ navigation }) {
     }
 
     const deletePost = (id) => {
-        axios.post('http://192.168.1.122:8070/api/event/del', { eid: id }).then(data => {
+        axios.post(`${path}/api/event/del`, { eid: id }).then(data => {
             console.log(data)
             getData2()
         }).catch(err => {

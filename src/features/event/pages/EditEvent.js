@@ -16,7 +16,7 @@ function EditEvent({ route, navigation }) {
     const [venue, setvenue] = useState('');
     const [time, settime] = useState('');
     const [description, setdescription] = useState('');
-
+    const path = "http://10.0.2.2:8070"
 
     useEffect(() => {
         getData()
@@ -76,7 +76,7 @@ function EditEvent({ route, navigation }) {
 
         };
 
-        axios.post('http://192.168.1.122:8070/api/event/edit', { eid, obj: newEvent })
+        axios.post(`${path}/api/event/edit`, { eid, obj: newEvent })
             .then(data => {
                 console.log(data.data)
                 alert("successfully created")

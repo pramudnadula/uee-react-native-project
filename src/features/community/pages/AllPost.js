@@ -14,6 +14,7 @@ function AllPost({ navigation }) {
     const [comms, setcomms] = useState()
     const [uid, setuid] = useState()
     const [comm, setcomm] = useState('')
+    const path = "http://10.0.2.2:8070"
     const [modalVisible, setModalVisible] = useState(false);
     useEffect(() => {
         getData()
@@ -21,7 +22,7 @@ function AllPost({ navigation }) {
     }, [])
 
     const getData = () => {
-        axios.get('http://192.168.1.23:8070/api/post/all').then(data => {
+        axios.get(`${path}/api/post/all`).then(data => {
             setposts(data.data)
         }).catch(err => {
             console.log(err)
@@ -50,7 +51,7 @@ function AllPost({ navigation }) {
             return
         }
         console.log(uid)
-        axios.post('http://192.168.1.23:8070/api/post/addcomment', { pid, uid, content: comm }).then(data => {
+        axios.post(`${path}/api/post/addcomment`, { pid, uid, content: comm }).then(data => {
             // setexist(!exist)
             setcomms(data.data)
             setcomm("")
