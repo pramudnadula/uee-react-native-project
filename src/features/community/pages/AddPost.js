@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Button, Alert, Switch, Text, TextInput } from 'react-native';
+import { Pressable, View, Button, Alert, Switch, Text, TextInput, Image } from 'react-native';
 import { Container, ImageContainer, SelectContainer, Input, InputContainer, InputTextArea, InputView, RadioContainer, RadioHolder, SelectImage, TitleText, SwichGroup, OneSwitch, AddImage, VisibleImageBox, EditButton } from '../styles/add';
 import { ActivityIndicator, RadioButton } from 'react-native-paper';
 import { Picker } from '@react-native-picker/picker';
@@ -10,7 +10,8 @@ import { ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ContentWrapper, ImageWrapper } from '../styles/all';
 import { HeadText } from '../styles/mypost';
-function AddPost(props) {
+
+function AddPost({ navigation }) {
     const [selectedLanguage, setSelectedLanguage] = useState('');
     const [image, setImage] = useState(null);
     const [title, settitle] = useState('');
@@ -128,6 +129,8 @@ function AddPost(props) {
         }
         axios.post(`${path}/api/post/add`, ob).then(data => {
             console.log(data.data)
+            Alert.alert("Post Added Successfully")
+            navigation.navigate('allpost')
         }).catch(err => {
             console.log(err)
         })
@@ -135,8 +138,22 @@ function AddPost(props) {
     }
     return (
         <Container>
-
             <ImageWrapper source={require('../../../../assets/backk.png')}>
+                <Pressable style={{
+                    marginTop: 20,
+                    marginLeft: 15,
+                    justifyContent: "flex-start",
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    backgroundColor: "#82C7EE",
+                    paddingLeft: 10,
+                    paddingRight: 10,
+                    borderRadius: 50,
+                }} onPress={() => navigation.goBack()}>
+                    <Image style={{ marginTop: 5, width: 25, height: 40, }}
+                        source={require("../../../../assets/back.png")} />
+                </Pressable>
                 <ContentWrapper>
                     <HeadText>Create Post</HeadText>
                     <ScrollView showsVerticalScrollIndicator={false}>

@@ -34,7 +34,7 @@ function SideBar({ navigation, ind }) {
                                 alignItems: "center",
                                 justifyContent: "flex-start",
                                 marginTop: 'auto',
-                                marginBottom: '35%',
+                                marginBottom: '50%',
                             }}>
                             <AntDesign name="logout" size={24} color="black"
                                 style={{

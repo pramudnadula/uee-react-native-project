@@ -7,6 +7,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Searchbar } from 'react-native-paper';
 import { HeadText, NoPost, NText } from '../styles/mypost';
 import { SearchView } from '../../report/pages/Reports/Reports.style';
+import NavigationBottomBar from '../../../components/NavigationBottomBar'
+import SideBar from '../../../components/SideBar'
+
 function MyPost({ navigation, route }) {
 
     const [data, setdate] = useState([])
@@ -91,11 +94,13 @@ function MyPost({ navigation, route }) {
     }
     return (
         <Container>
-
+            <SideBar navigation={navigation} />
             <Back2 source={require('../../../../assets/backk.png')}>
                 <ContentWrapper>
                     <HeadText>My Posts</HeadText>
-                    <SearchView>
+                    <SearchView
+                        style={{ marginTop: '10%' }}
+                    >
                         <Searchbar
                             placeholder="Search"
                             onChangeText={(query) => setSearchQuery(query)}
@@ -114,6 +119,7 @@ function MyPost({ navigation, route }) {
                     />
                 </ContentWrapper>
             </Back2>
+            <NavigationBottomBar navigation={navigation} />
         </Container>
     );
 }

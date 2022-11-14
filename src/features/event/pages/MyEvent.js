@@ -7,6 +7,8 @@ import { Searchbar } from 'react-native-paper';
 import { View, FlatList, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MyEventCard from '../Components/MyEventCard';
+import NavigationBottomBar from '../../../components/NavigationBottomBar'
+import SideBar from '../../../components/SideBar'
 
 function MyEvent({ navigation }) {
 
@@ -70,6 +72,7 @@ function MyEvent({ navigation }) {
 
     return (
         <Container>
+            <SideBar navigation={navigation} />
             <AddButton onPress={() => navigation.navigate("addevent")}><Ionicons name="add-circle" color="blue" size={57} /></AddButton>
             <View style={{ width: 30 }}></View>
             <View>
@@ -90,7 +93,9 @@ function MyEvent({ navigation }) {
                 renderItem={({ item }) => <MyEventCard item={item} del={clickDelete} navmethod={updateMethod} />}
                 keyExtractor={item => item.id}
                 showsVerticalScrollIndicator={false}
+                style={{ marginBottom: 50 }}
             />
+            < NavigationBottomBar navigation={navigation} />
         </Container>
     );
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Button, Alert, Switch, Text, TextInput } from 'react-native';
+import { View, Button, Alert, Switch, Text, TextInput, Pressable, Image } from 'react-native';
 import { Container, ImageContainer, SelectContainer, Input, InputContainer, InputTextArea, InputView, RadioContainer, RadioHolder, SelectImage, TitleText, SwichGroup, OneSwitch, AddImage, VisibleImageBox, EditButton } from '../styles/add';
 import { ActivityIndicator, RadioButton } from 'react-native-paper';
 import { Picker } from '@react-native-picker/picker';
@@ -161,6 +161,26 @@ function EditPost({ navigation, route }) {
     return (
         <Container>
             <Back2 source={require('../../../../assets/backk.png')}>
+                <Pressable style={{
+                    marginTop: 20,
+                    marginLeft: 15,
+                    justifyContent: "flex-start",
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    backgroundColor: "#82C7EE",
+                    paddingLeft: 10,
+                    paddingRight: 10,
+                    borderRadius: 50,
+                }} onPress={() => navigation.goBack()}>
+                    <Image
+                        style={{
+                            marginTop: 5,
+                            width: 25,
+                            height: 40,
+                        }}
+                        source={require("../../../../assets/back.png")} />
+                </Pressable>
                 <ContentWrapper>
                     <HeadText>Edit Post</HeadText>
                     <ScrollView showsVerticalScrollIndicator={false}>

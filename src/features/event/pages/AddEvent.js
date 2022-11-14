@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
-import { Modal, TouchableOpacity, View, Button, Alert, Switch, Text, TextInput, StyleSheet } from 'react-native';
+import { Pressable, Modal, TouchableOpacity, View, Button, Alert, Switch, Text, TextInput, StyleSheet, ScrollView, Image } from 'react-native';
 import { Container, ImageContainer, SelectContainer, Input, InputContainer, InputTextArea, InputView, RadioContainer, RadioHolder, SelectImage, TitleText, SwichGroup, OneSwitch } from '../styles/add';
 import { EventImage } from "../styles/all";
 import { Picker } from '@react-native-picker/picker';
@@ -8,8 +8,11 @@ import * as ImagePicker from 'expo-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import DatePicker from '@react-native-community/datetimepicker';
+import NavigationBottomBar from '../../../components/NavigationBottomBar'
+import SideBar from '../../../components/SideBar'
 
-function AddEvent(props) {
+
+function AddEvent({ navigation }) {
     const [uid, setuid] = useState('');
     const [title, settitle] = useState('');
     const [date, setdate] = useState('09-10-2020');
@@ -85,7 +88,7 @@ function AddEvent(props) {
                 console.log(data.data)
                 alert("successfully created")
 
-
+                navigation.navigate("allevent")
             }).catch(err => {
                 console.log(err)
             })
@@ -95,28 +98,53 @@ function AddEvent(props) {
     return (
         <Container>
             <TitleText>Create Event</TitleText>
-            <InputContainer>
+            <Pressable style={{
+                marginTop: 20,
+                marginLeft: 15,
+                justifyContent: "flex-start",
+                position: "absolute",
+                top: 0,
+                left: 0,
+                backgroundColor: "#82C7EE",
+                paddingLeft: 10,
+                paddingRight: 10,
+                borderRadius: 50,
+            }} onPress={() => navigation.goBack()}>
+                <Image
+                    style={{
+                        marginTop: 5,
+                        width: 25,
+                        height: 40,
+                    }}
+                    source={require("../../../../assets/back.png")} />
+            </Pressable>
+            <ScrollView
+                style={{
+                    marginBottom: '18%',
+                }}
+            >
+                <InputContainer>
 
-                <EventImage source={require('../../../../assets/createevent.jpg')} />
+                    <EventImage source={require('../../../../assets/createevent.jpg')} />
 
-                {/* <View >
+                    {/* <View >
                     <TouchableOpacity style={{ justifyContent: 'center', backgroundColor: '#52B1E2', height: 20, width: '40%', alignItems: 'center', alignSelf: 'flex-end', borderRadius: 6, marginTop: 3 }} >
                         <Text style={{ fontSize: 12, fontWeight: 'bold', color: 'white' }}> UPLOAD IMAGE </Text>
                     </TouchableOpacity>
                 </View> */}
 
-                <InputView>
-                    <Text>Title</Text>
-                    <Input placeholder={"Enter the Event title"} onChangeText={newtext => settitle(newtext)} />
-                </InputView>
+                    <InputView>
+                        <Text>Title</Text>
+                        <Input placeholder={"Enter the Event title"} onChangeText={newtext => settitle(newtext)} />
+                    </InputView>
 
-                <InputView>
-                    <Text>Date</Text>
-                    <Input placeholder={"Enter the Date"} onChangeText={newtext => setdate(newtext)} />
-                </InputView>
+                    <InputView>
+                        <Text>Date</Text>
+                        <Input placeholder={"Enter the Date"} onChangeText={newtext => setdate(newtext)} />
+                    </InputView>
 
 
-                {/* <DatePicker
+                    {/* <DatePicker
                     style={styles.datePickerStyle}
                     date={date} //initial date from state
                     mode="date" //The enum of date, datetime and time
@@ -143,35 +171,37 @@ function AddEvent(props) {
                     }}
                 /> */}
 
-                <InputView>
-                    <Text>Image</Text>
-                    <Input placeholder={"Enter the Image"} onChangeText={newtext => setImg(newtext)} />
-                </InputView>
+                    <InputView>
+                        <Text>Image</Text>
+                        <Input placeholder={"Enter the Image"} onChangeText={newtext => setImg(newtext)} />
+                    </InputView>
 
-                <InputView>
-                    <Text>Venue</Text>
-                    <Input placeholder={"Enter the Venue"} onChangeText={newtext => setvenue(newtext)} />
-                </InputView>
+                    <InputView>
+                        <Text>Venue</Text>
+                        <Input placeholder={"Enter the Venue"} onChangeText={newtext => setvenue(newtext)} />
+                    </InputView>
 
-                <InputView>
-                    <Text>Time</Text>
-                    <Input placeholder={"Enter the time"} onChangeText={newtext => settime(newtext)} />
-                </InputView>
-
-
-                <InputTextArea>
-                    <Text>Event Description</Text>
-                    <Input placeholder={"Enter the Description"} onChangeText={newtext => setdescription(newtext)} />
-                </InputTextArea>
+                    <InputView>
+                        <Text>Time</Text>
+                        <Input placeholder={"Enter the time"} onChangeText={newtext => settime(newtext)} />
+                    </InputView>
 
 
-            </InputContainer>
+                    <InputTextArea>
+                        <Text>Event Description</Text>
+                        <Input placeholder={"Enter the Description"} onChangeText={newtext => setdescription(newtext)} />
+                    </InputTextArea>
 
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Button title="Create" color="green" onPress={() => submitData()} />
-            </View>
 
-        </Container>
+                </InputContainer>
+
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                    <Button title="Create" color="green" onPress={() => submitData()} />
+                </View>
+
+            </ScrollView>
+            < NavigationBottomBar navigation={navigation} />
+        </Container >
 
     )
 }
