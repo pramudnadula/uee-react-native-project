@@ -37,7 +37,7 @@ export const SideBarDetails = [
     {
         title: "My Account",
         image: require("../../assets/profile.png"),
-        screen: "MyMarianResources",
+        screen: "Home",
     },
     {
         title: "My Resources",
@@ -70,7 +70,7 @@ export const BottomNavigationDetails = [
     {
         title: "Event",
         image: require("../../assets/eventicon.png"),
-        screen: "MyMarianResources",
+        screen: "allevent",
     },
     {
         title: "Home",
@@ -80,7 +80,7 @@ export const BottomNavigationDetails = [
     {
         title: "Community",
         image: require("../../assets/posticon.png"),
-        screen: "MyMarianResources",
+        screen: "allpost",
     },
     {
         title: "Report",

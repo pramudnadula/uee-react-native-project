@@ -7,6 +7,8 @@ import { Searchbar } from 'react-native-paper';
 import { View, FlatList, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MyEventCard from '../Components/MyEventCard';
+import SideBar from '../../../components/SideBar'
+import NavigationBottomBar from '../../../components/NavigationBottomBar'
 
 function AllEvent({ navigation }) {
 
@@ -31,7 +33,7 @@ function AllEvent({ navigation }) {
 
     }, [data])
     const getData = (id) => {
-        axios.post(`${path}/api/event/allevent`).then(data => {
+        axios.get(`${path}/api/event/allevent`).then(data => {
             setdate(data.data)
         }).catch(err => {
             console.log(err)
@@ -45,13 +47,18 @@ function AllEvent({ navigation }) {
 
     return (
         <Container>
+            <SideBar navigation={navigation} />
             <AddButton onPress={() => navigation.navigate("addevent")}><Ionicons name="add-circle" color="blue" size={57} /></AddButton>
             <View style={{ width: 30 }}></View>
             <View>
                 <PageTitle>All Events</PageTitle>
             </View>
+            <View
+                style={{
+                    marginBottom: '40%',
+                }} >
 
-            {/* <SearchView>
+                {/* <SearchView>
                 <Searchbar
                     placeholder="Search"
                     // onChangeText={(query) => setSearchQuery(query)}
@@ -60,12 +67,14 @@ function AllEvent({ navigation }) {
                 />
             </SearchView> */}
 
-            <FlatList
-                data={data}
-                renderItem={({ item }) => <MyEventCard item={item} type={true} />}
-                keyExtractor={item => item.id}
-                showsVerticalScrollIndicator={false}
-            />
+                <FlatList
+                    data={data}
+                    renderItem={({ item }) => <MyEventCard item={item} type={true} />}
+                    keyExtractor={item => item.id}
+                    showsVerticalScrollIndicator={false}
+                />
+            </View>
+            < NavigationBottomBar navigation={navigation} />
         </Container>
     );
 }

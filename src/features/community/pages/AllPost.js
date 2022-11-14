@@ -8,7 +8,10 @@ import { Button } from "react-native-paper";
 import { CommentSend, Input, Input2, InputView, InputView2, SendButton } from "../styles/add";
 import Comment from "../components/Comment";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import SideBar from "../../../components/SideBar";
+import NavigationBottomBar from '../../../components/NavigationBottomBar'
+import SideBar from '../../../components/SideBar'
+
+
 function AllPost({ navigation }) {
     const [posts, setposts] = useState([])
     const [comms, setcomms] = useState()
@@ -67,27 +70,28 @@ function AllPost({ navigation }) {
             <SideBar navigation={navigation} ind={true} />
 
             <ImageWrapper source={require('../../../../assets/backk.png')}>
-
                 <HeaderRow>
                     <AllText>Community</AllText>
                     <AddButton onPress={() => navigation.navigate("addpost")}><Ionicons name="add-circle" color="#0099FF" size={57} /></AddButton>
                 </HeaderRow>
-
-                <FlatList
-                    data={posts}
-                    renderItem={({ item }) => <PostCard item={item} type={item.type} visible={setCommdata} meth={getData} />}
-                    keyExtractor={item => item.id}
-                    showsVerticalScrollIndicator={false}
-                />
-                <PopModal
-                    animationType="slide"
-                    transparent={true}
-                    visible={modalVisible}
-                    onRequestClose={() => {
-
-                        setModalVisible(!modalVisible);
+                <View
+                    style={{
+                        marginBottom: '25%',
                     }}>
-                    {/* <View style={styles.centeredView}>
+                    <FlatList
+                        data={posts}
+                        renderItem={({ item }) => <PostCard item={item} type={item.type} visible={setCommdata} meth={getData} />}
+                        keyExtractor={item => item.id}
+                        showsVerticalScrollIndicator={false} />
+                    <PopModal
+                        animationType="slide"
+                        transparent={true}
+                        visible={modalVisible}
+                        onRequestClose={() => {
+
+                            setModalVisible(!modalVisible);
+                        }}>
+                        {/* <View style={styles.centeredView}>
                     <View style={styles.modalView}>
                         <Text style={styles.modalText}>Hello World!</Text>
                         <Pressable
@@ -97,36 +101,38 @@ function AllPost({ navigation }) {
                         </Pressable>
                     </View>
                 </View> */}
-                    <View style={styles.centeredView}>
-                        <View style={styles.modalView}>
-                            <PopContent>
-                                <InputView2>
-                                    <CloseModal>
-                                        <Pressable
-                                            style={[styles.button, styles.buttonClose]}
-                                            onPress={() => setModalVisible(!modalVisible)}>
-                                            <Ionicons name="close" size={20} color={"white"} />
-                                        </Pressable>
-                                    </CloseModal>
-                                    <CommentSend>
-                                        <Input2 placeholder={"Enter the comment"} onChangeText={newtext => setcomm(newtext)} />
-                                        <SendButton>
-                                            <SendButton2 onPress={() => addComment(comms._id)}>
-                                                <Ionicons name="send-outline" size={26} color={"green"} />
-                                            </SendButton2>
-                                        </SendButton>
-                                    </CommentSend>
-                                    <CommentList>
-                                        {comms?.comments?.map((m, i) => (
-                                            <Comment data={m} />
-                                        ))}
-                                    </CommentList>
-                                </InputView2>
-                            </PopContent>
+                        <View style={styles.centeredView}>
+                            <View style={styles.modalView}>
+                                <PopContent>
+                                    <InputView2>
+                                        <CloseModal>
+                                            <Pressable
+                                                style={[styles.button, styles.buttonClose]}
+                                                onPress={() => setModalVisible(!modalVisible)}>
+                                                <Ionicons name="close" size={20} color={"white"} />
+                                            </Pressable>
+                                        </CloseModal>
+                                        <CommentSend>
+                                            <Input2 placeholder={"Enter the comment"} onChangeText={newtext => setcomm(newtext)} />
+                                            <SendButton>
+                                                <SendButton2 onPress={() => addComment(comms._id)}>
+                                                    <Ionicons name="send-outline" size={26} color={"green"} />
+                                                </SendButton2>
+                                            </SendButton>
+                                        </CommentSend>
+                                        <CommentList>
+                                            {comms?.comments?.map((m, i) => (
+                                                <Comment data={m} />
+                                            ))}
+                                        </CommentList>
+                                    </InputView2>
+                                </PopContent>
+                            </View>
                         </View>
-                    </View>
-                </PopModal>
+                    </PopModal>
+                </View>
             </ImageWrapper>
+            <NavigationBottomBar navigation={navigation} />
         </Container >
     );
 }
